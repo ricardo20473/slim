@@ -5,44 +5,12 @@ include("Slim/Slim.php");
 
 //registran la instancia de slim
 \Slim\Slim::registerAutoloader();
+
 //aplicacion 
 $app = new \Slim\Slim();
 
-//routing 
-//accediendo VIA URL
-//http:///www.google.com/
-//localhost/apirest/index.php/ => "Hola mundo ...."
-$app->get(
-    '/',function() use ($app){
-    	
-    	//consultas a la base de datos 
-    	// peticiones a otro rest 
-    	// etcetera
-    	$datos = array(
-    					"nombre" => "pepe", 
-    					"edad" => "23"
-    					);
-
-    	//json 
-        echo json_encode($datos);
-    }
-)->setParams(array($app));
-
-$app->get(
-    '/usuario/:nombre',function($nombre) use ($app){
-    	$id = $nombre;
-    	//almaceno el ID
-    	//conexion con base de datos
-    	//el proceso
-    	// retorno un JSON
-        echo "hola bienvenido " . $nombre;
-    }
-);
-
-$app->get('/nombre/',function() use ($app){
-        echo "hola bienvenido ricardo" ;
-    }
-);
+//Agregando todo el contenido de la carpeta app
+require 'app/app_loader.php';
 
 //inicializamos la aplicacion(API)
 $app->run();
