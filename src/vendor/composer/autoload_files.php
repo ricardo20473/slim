@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     $vendorDir . '/nikic/fast-route/src/functions.php',
+    $vendorDir . '/ircmaxell/password-compat/lib/password.php',
+    $vendorDir . '/paragonie/random_compat/lib/random.php',
 );

@@ -6,6 +6,7 @@ $folders = [
     'config',
     'models',
     'routers',
+    'security'
 ];
 
 foreach($folders as $f)
