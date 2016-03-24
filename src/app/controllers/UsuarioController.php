@@ -14,59 +14,94 @@ class UsuarioController
         $this->response = new Response();
     }
     
-    public function Get($response){
+    public function Get(){
         
         if ($this->usuario) {
             
             $get = $this->usuario->Get();
 
-            $this->response->setResponse($get,$response);
-            
-            return $this->response;
+            return $this->response->setResponse($get);
         }else{
             return  ICommons::UNEXPECTED_ERROR;
         }            
     }
 
-    public function BuscarPorId($id,$response){
+    public function BuscarPorId($id){
         
         if ($this->usuario) {
 
             $filtrarId = $this->usuario->BuscarPorId($id);
 
-            $this->response->setResponse($filtrarId,$response);
-            
-            return $this->response;
+            return $this->response->setResponse($filtrarId);
         }else{
             return  ICommons::UNEXPECTED_ERROR;
         }            
     }
 
-    public function BuscarPorLike($like,$response){
+    public function BuscarPorLike($like){
         
         if ($this->usuario) {
 
             $like = $this->usuario->BuscarPorLike($like);
 
-            $this->response->setResponse($like,$response);
-            
-            return $this->response;
+            return $this->response->setResponse($like);
         }else{
             return  ICommons::UNEXPECTED_ERROR;
         }            
     }
 
-    public function Listar($filtrar,$response){
+    public function Listar($request){
         
         if ($this->usuario) {
-
-            $filtrar = $this->usuario->Listar($filtrar);
-
-            $this->response->setResponse($filtrar,$response);
             
-            return $this->response;
+            $filter = array();
+            $nombre = $request->getParam('nombre');
+            $apellido = $request->getParam('apellido');
+            $usuario = $request->getParam('usuario');
+            $email = $request->getParam('email');
+
+            if($nombre){
+                if (!empty($nombre)) {
+                    $filter["nombre"] = $nombre;
+                }else{
+                    return ICommons::INVALID_FILTER . ". Nombre: " .$nombre;
+                }
+            }
+
+            if ($apellido) {
+                if(!empty($apellido)){
+                    $filter["apellido"] = $apellido;
+                }else{
+                    return ICommons::INVALID_FILTER . ". Apellido: " .$apellido;
+                }
+            }
+            
+            if ($usuario) {
+                if(!empty($usuario)){
+                    $filter["usuario"] = $usuario;
+                }else{
+                    return ICommons::INVALID_FILTER . ". Usuario: " .$usuario;
+                }
+            }
+            
+
+            if ($email) {
+                if(!empty($email)){
+                    $filter["email"] = $email;
+                }else{
+                    return ICommons::INVALID_FILTER . ". Email: " .$email;
+                }
+            }
+            
+            $filtrar = $this->usuario->Listar($filter);
+            
+            return $this->response->setResponse($filtrar);
         }else{
             return  ICommons::UNEXPECTED_ERROR;
         }            
+    }
+
+    public function Registrar(){
+        
     }
 }

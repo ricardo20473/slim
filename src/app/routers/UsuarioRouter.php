@@ -7,21 +7,31 @@ $app->group('/usuarios', function () {
     $usuario = new UsuarioController();
 
     $this->get('/', function ($request, $response, $args) use ($usuario){
-        return $response->withJson($usuario->Get($response));
+        $resp = $usuario->Get();
+        return $response->withHeader($resp['header'])
+                        ->withStatus($resp['status'])
+                        ->withJson($resp['mensaje']);
     });
 
     $this->get('/{id}', function ($request, $response, $args) use ($usuario){
-        return $response->withJson($usuario->BuscarPorId($args['id'],$response));
+        $resp = $usuario->BuscarPorId($args['id']);
+        return $response->withHeader($resp['header'])
+                        ->withStatus($resp['status'])
+                        ->withJson($resp['mensaje']);
     });
 
     $this->get('/filtrar/{like}', function ($request, $response, $args) use ($usuario){
-        $this->logger->debug($args['like']);
-        return $response->withJson($usuario->BuscarPorLike($args['like'],$response));
+        $resp = $usuario->BuscarPorLike($args['like']);
+        return $response->withHeader($resp['header'])
+                        ->withStatus($resp['status'])
+                        ->withJson($resp['mensaje']);
     });
 
-    $this->get('/listar/{filtrar}', function ($request, $response, $args) use ($usuario){
-        $this->logger->debug('listar: '.$args['filtrar']);
-        return $response->withJson($usuario->Listar($args['filtrar'],$response));
+    $this->get('/listar/', function ($request, $response, $args) use ($usuario){
+        $resp = $usuario->Listar($request);
+        return $response->withHeader($resp['header'])
+                        ->withStatus($resp['status'])
+                        ->withJson($resp['mensaje']);
     });
     
 });

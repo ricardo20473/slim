@@ -33,8 +33,11 @@ class Usuario
             $dato = $data->execute();
             $datas = $dato->fetch();
 
-            return $datas;
-
+            if ($datas) {
+                return $datas;
+            }else{
+                return ICommons::INVALID_RECORD_NOT_EXIST;
+            }
         } catch (Exception $e){
             return ICommons::UNEXPECTED_ERROR.": " . $e->getMessage();
         }
@@ -54,10 +57,9 @@ class Usuario
         }
     }
 
-    public function Listar($filtrar){
+    public function Listar($filter){
         try{
-            $array = explode("=", $filtrar);
-            $data = $this->db->select()->from($this->table)->where($array[0], '=', $array[1]);
+            $data = $this->db->select()->from($this->table)->whereMany($filter,'=');
             $dato = $data->execute();
             $datas = $dato->fetchAll();
 
