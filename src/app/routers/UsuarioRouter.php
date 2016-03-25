@@ -20,8 +20,8 @@ $app->group('/usuarios', function () {
                         ->withJson($resp['mensaje']);
     });
 
-    $this->get('/filtrar/{like}', function ($request, $response, $args) use ($usuario){
-        $resp = $usuario->BuscarPorLike($args['like']);
+    $this->get('/filtrar/', function ($request, $response, $args) use ($usuario){
+        $resp = $usuario->BuscarPorLike($request);
         return $response->withHeader($resp['header'])
                         ->withStatus($resp['status'])
                         ->withJson($resp['mensaje']);
@@ -29,6 +29,27 @@ $app->group('/usuarios', function () {
 
     $this->get('/listar/', function ($request, $response, $args) use ($usuario){
         $resp = $usuario->Listar($request);
+        return $response->withHeader($resp['header'])
+                        ->withStatus($resp['status'])
+                        ->withJson($resp['mensaje']);
+    });
+
+    $this->post('/', function ($request, $response, $args) use ($usuario){
+        $resp = $usuario->Registrar($request->getParsedBody());
+        return $response->withHeader($resp['header'])
+                        ->withStatus($resp['status'])
+                        ->withJson($resp['mensaje']);
+    });
+
+    $this->put('/{id}', function ($request, $response, $args) use ($usuario){
+        $resp = $usuario->Actualizar($args['id'],$request->getParsedBody());
+        return $response->withHeader($resp['header'])
+                        ->withStatus($resp['status'])
+                        ->withJson($resp['mensaje']);
+    });
+
+    $this->delete('/{id}', function ($request, $response, $args) use ($usuario){
+        $resp = $usuario->Eliminar($args['id']);
         return $response->withHeader($resp['header'])
                         ->withStatus($resp['status'])
                         ->withJson($resp['mensaje']);

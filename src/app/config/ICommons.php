@@ -28,6 +28,11 @@ interface ICommons
     const INVALID_DATA                  = "La data enviada no es válida, intente nuevamente";
     const INVALID_FILE_DATA             = "Error: El archivo de configuración no puede estar vacío";
 
+    const POST                          = 'REGISTRO';
+    const PUT                           = 'MODIFICACION';
+    const DELETE                        = 'ELIMINACION';
+    const GET                           = 'LISTADO';
+
     const HTTP_200                      = 200;
     const HTTP_200_MSG                  = "OK";
     const HTTP_409                      = 409;

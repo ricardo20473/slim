@@ -45,12 +45,20 @@ class Usuario
 
     public function BuscarPorLike($like){
         try{
-            $array = explode("=", $like);
-            $data = $this->db->select()->from($this->table)->whereLike($array[0], '%'.$array[1].'%');
+            $data = "";
+            foreach ($like as $key => $value) {
+                $data = $this->db->select()->from($this->table)->whereLike($key, '%'.$value.'%');
+            }
+            
             $dato = $data->execute();
             $datas = $dato->fetchAll();
 
-            return $datas;
+            if ($datas) {
+                return $datas;
+            }else{
+                return ICommons::INVALID_RECORD_NOT_EXIST;
+            }
+            
 
         } catch (Exception $e){
             return ICommons::UNEXPECTED_ERROR.": " . $e->getMessage();
@@ -64,6 +72,55 @@ class Usuario
             $datas = $dato->fetchAll();
 
             return $datas;
+
+        } catch (Exception $e){
+            return ICommons::UNEXPECTED_ERROR.": " . $e->getMessage();
+        }
+    }
+
+    public function Registrar($datos){
+        try{
+            $dataN = array_merge($datos, array('id' => null));
+            $data = $this->db->insert(array_keys($dataN))->into($this->table)->values(array_values($dataN));
+            $dato = $data->execute(false);
+            $datas = $this->db->lastInsertId();
+
+            return $datas;
+
+        } catch (Exception $e){
+            return ICommons::UNEXPECTED_ERROR.": " . $e->getMessage();
+        }
+    }
+
+    public function Actualizar($id,$datos){
+        try{
+            $data = $this->db->update($datos)->table($this->table)->where('id','=',$id);
+            $dato = $data->execute();
+            $datas = $id;
+
+            return $datas;
+
+        } catch (Exception $e){
+            return ICommons::UNEXPECTED_ERROR.": " . $e->getMessage();
+        }
+    }
+
+    public function Eliminar($id){
+        try{
+            $data = $this->db->delete($datos)->from($this->table)->where('id','=',$id);
+            $dato = $data->execute();
+
+            if ($dato != null || $dato = "") {
+                if ($dato == 1) {
+                    return ICommons::DELETE;
+                }else{
+                    return ICommons::INVALID_RECORD_NOT_EXIST;
+                }
+            }else{
+                return ICommons::INVALID_RECORD_NOT_EXIST;
+            }
+
+            
 
         } catch (Exception $e){
             return ICommons::UNEXPECTED_ERROR.": " . $e->getMessage();

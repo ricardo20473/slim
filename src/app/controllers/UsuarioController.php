@@ -38,11 +38,34 @@ class UsuarioController
         }            
     }
 
-    public function BuscarPorLike($like){
+    public function BuscarPorLike($request){
         
         if ($this->usuario) {
 
-            $like = $this->usuario->BuscarPorLike($like);
+            $filter = array();
+            $nombre = $request->getParam('nombre');
+            $apellido = $request->getParam('apellido');
+            $usuario = $request->getParam('usuario');
+            $email = $request->getParam('email');
+
+            if($nombre){
+                $filter["nombre"] = $nombre;
+            }
+
+            if ($apellido) {
+                $filter["apellido"] = $apellido;
+            }
+            
+            if ($usuario) {
+                $filter["usuario"] = $usuario;
+            }
+            
+
+            if ($email) {
+                $filter["email"] = $email;
+            }
+
+            $like = $this->usuario->BuscarPorLike($filter);
 
             return $this->response->setResponse($like);
         }else{
@@ -101,7 +124,40 @@ class UsuarioController
         }            
     }
 
-    public function Registrar(){
-        
+    public function Registrar($data){
+        if ($this->usuario) {
+            
+            $registrar = $this->usuario->Registrar($data);
+
+            $buscarPorId = $this->usuario->BuscarPorId($registrar);
+
+            return $this->response->setResponse($buscarPorId);
+        }else{
+            return  ICommons::UNEXPECTED_ERROR;
+        }
+    }
+
+    public function Actualizar($id,$data){
+        if ($this->usuario) {
+            
+            $actualizar = $this->usuario->Actualizar($id,$data);
+
+            $buscarPorId = $this->usuario->BuscarPorId($actualizar);
+
+            return $this->response->setResponse($buscarPorId);
+        }else{
+            return  ICommons::UNEXPECTED_ERROR;
+        }
+    }
+
+    public function Eliminar($id){
+        if ($this->usuario) {
+            
+            $eliminar = $this->usuario->Eliminar($id);
+
+            return $this->response->setResponse($eliminar);
+        }else{
+            return  ICommons::UNEXPECTED_ERROR;
+        }
     }
 }
