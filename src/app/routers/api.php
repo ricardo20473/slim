@@ -7,7 +7,3 @@ $app->get('/', function ($request, $response, $args) {
     return $response->write("Bienvenidos a Slim API REST ");
 
 });
-
-$app->get('/api',function ($req, $res, $args) {
-
-});

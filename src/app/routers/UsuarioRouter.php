@@ -2,7 +2,6 @@
 
 use App\Controllers\UsuarioController;
 use App\Config\Response;
-use App\Config\ICommons; 
 
 $app->group('/usuarios', function () {
     
@@ -11,7 +10,7 @@ $app->group('/usuarios', function () {
 
     $this->get('/', function ($request, $response, $args) use ($usuario,$token){
         $resp = $token->Token($request);
-        if ($resp['token'] === true) {
+        if ($resp['api_key'] === true) {
             $resp = $usuario->Get();
         }
         return $response->withStatus($resp['status'])->withJson($resp['mensaje']);
@@ -19,7 +18,7 @@ $app->group('/usuarios', function () {
 
     $this->get('/{id}', function ($request, $response, $args) use ($usuario,$token){
         $resp = $token->Token($request);
-        if ($resp['token'] === true) {
+        if ($resp['api_key'] === true) {
             $resp = $usuario->BuscarPorId($args['id']);
         }
         return $response->withStatus($resp['status'])->withJson($resp['mensaje']);
@@ -27,7 +26,7 @@ $app->group('/usuarios', function () {
 
     $this->get('/filtrar/', function ($request, $response, $args) use ($usuario,$token){
         $resp = $token->Token($request);
-        if ($resp['token'] === true) {
+        if ($resp['api_key'] === true) {
             $resp = $usuario->BuscarPorLike($request);
         }
         return $response->withStatus($resp['status'])->withJson($resp['mensaje']);
@@ -35,7 +34,7 @@ $app->group('/usuarios', function () {
 
     $this->get('/listar/', function ($request, $response, $args) use ($usuario,$token){
         $resp = $token->Token($request);
-        if ($resp['token'] === true) {
+        if ($resp['api_key'] === true) {
             $resp = $usuario->Listar($request);
         }        
         return $response->withStatus($resp['status'])->withJson($resp['mensaje']);
@@ -43,7 +42,7 @@ $app->group('/usuarios', function () {
 
     $this->post('/', function ($request, $response, $args) use ($usuario,$token){
         $resp = $token->Token($request);
-        if ($resp['token'] === true) {
+        if ($resp['api_key'] === true) {
             $resp = $usuario->Registrar($request->getParsedBody());
         }
         return $response->withStatus($resp['status'])->withJson($resp['mensaje']);
@@ -51,7 +50,7 @@ $app->group('/usuarios', function () {
 
     $this->put('/{id}', function ($request, $response, $args) use ($usuario,$token){
         $resp = $token->Token($request);
-        if ($resp['token'] === true) {
+        if ($resp['api_key'] === true) {
             $resp = $usuario->Actualizar($args['id'],$request->getParsedBody());
         }        
         return $response->withStatus($resp['status'])->withJson($resp['mensaje']);
@@ -59,7 +58,7 @@ $app->group('/usuarios', function () {
 
     $this->delete('/{id}', function ($request, $response, $args) use ($usuario,$token){
         $resp = $token->Token($request);
-        if ($resp['token'] === true) {
+        if ($resp['api_key'] === true) {
             $resp = $usuario->Eliminar($args['id']);
         }        
         return $response->withStatus($resp['status'])->withJson($resp['mensaje']);

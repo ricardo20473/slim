@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+session_start();
+
 use App\Models\Usuario;
 use App\Config\Response;
 use App\Config\ICommons; 
@@ -17,17 +19,21 @@ class SecurityController
     public function Token($request){
         
         if ($this->usuario) {
-            
+
             $filtrar = $this->usuario->Listar($request);
+            $token = $this->response->CreateToken();
             
-            if ($filtrar) {
-                return $this->response->setResponse('Usuario existe');
+            if ($filtrar && $token) {
+                $_SESSION["token"] = $token;
+                $_SESSION["time"] = date("H:i:s",strtotime('+60 minutes'));
+                $filter = array_merge($filtrar[0],array("token" => $token));
+                return $this->response->setResponse($filter);
             }else{
-                return $this->response->setResponse('Usuario no existe');
+                return $this->response->setResponse(ICommons::INVALID_RECORD_NOT_EXIST);
             }
             
         }else{
-            return  ICommons::UNEXPECTED_ERROR;
+            return $this->response->setResponse(ICommons::UNEXPECTED_ERROR);
         }            
     }
 }

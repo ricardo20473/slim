@@ -25,9 +25,10 @@ interface ICommons
     const INVALID_ESTATUS_FIELD_REQUIRED= "Error: El campo estatus no puede estar vacio";
     const INVALID_FILTER                = "Error: Valor de filtro suministrado no valido";
     const INVALID_SOFTDELETE_ACTION     = "Error: El objeto tiene cambios y no puede ser eliminado logicamente";
-    const INVALID_HEADER_DEVICEID       = "Para esta peticion el Header X-Az-DeviceId es obligatorio";
     const INVALID_DATA                  = "La data enviada no es válida, intente nuevamente";
     const INVALID_FILE_DATA             = "Error: El archivo de configuración no puede estar vacío";
+    const AUTH_INVALID_USER_STATE       = "El usuario se encuentra en un estado no valido";
+    const INVALID_TIME                  = "Error: El tiempo expiro vuelve a ingresar";
 
     const POST                          = 'REGISTRO';
     const PUT                           = 'MODIFICACION';
@@ -36,10 +37,35 @@ interface ICommons
 
     const HTTP_200                      = 200;
     const HTTP_200_MSG                  = "OK";
+    const HTTP_201                      = 201;
+    const HTTP_201_MSG                  = "Peticion de creacion procesada";
+    const HTTP_202                      = 202;
+    const HTTP_202_MSG                  = "Peticion Aceptada";
+    const HTTP_204                      = 204;
+    const HTTP_204_MSG                  = "Respuesta sin contenido";
+    const HTTP_206                      = 206;
+    const HTTP_206_MSG                  = "Contenido parcial de la peticion solicitada";
+    const HTTP_400                      = 400;
+    const HTTP_400_MSG                  = "Peticion con Datos Erroneos";
     const HTTP_401                      = 401;
     const HTTP_401_MSG                  = "Acceso No Autorizado";
+    const HTTP_403                      = 403;
+    const HTTP_403_MSG                  = "Acceso Prohibido";
+    const HTTP_404                      = 404;
+    const HTTP_404_MSG                  = "Peticion no encontrada";
+    const HTTP_405                      = 405;
+    const HTTP_405_MSG                  = "Metodo no permitido";
+    const HTTP_406                      = 406;
+    const HTTP_406_MSG                  = "Peticion no aceptable";
+    const HTTP_408                      = 408;
+    const HTTP_408_MSG                  = "Timeout en la peticion";
     const HTTP_409                      = 409;
     const HTTP_409_MSG                  = "Peticion con Conflicto";
     const HTTP_500                      = 500;
     const HTTP_500_MSG                  = "Error interno en el servidor";
+    const HTTP_501                      = 501;
+    const HTTP_501_MSG                  = "Servicio no implementado";
+    const HTTP_503                      = 503;
+    const HTTP_503_MSG                  = "Servicio no disponible";
+    const FILE_EDITED                   = "El archivo de configuración ha sido editado";
 }
