@@ -14,15 +14,18 @@ class SecurityController
         $this->response = new Response();
     }
     
-    public function Token($response){
+    public function Token($request){
         
         if ($this->usuario) {
             
-            $listar = $this->usuario->Listar();
-
-            $this->response->setResponse($listar,$response);
+            $filtrar = $this->usuario->Listar($request);
             
-            return $response;
+            if ($filtrar) {
+                return $this->response->setResponse('Usuario existe');
+            }else{
+                return $this->response->setResponse('Usuario no existe');
+            }
+            
         }else{
             return  ICommons::UNEXPECTED_ERROR;
         }            

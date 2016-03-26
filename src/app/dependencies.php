@@ -17,3 +17,9 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], Monolog\Logger::DEBUG));
     return $logger;
 };
+
+// Register with container
+$container['csrf'] = function ($c) {
+    return new \Slim\Csrf\Guard;
+};
+

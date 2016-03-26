@@ -9,8 +9,9 @@ interface ICommons
     const HEADER_CONTENT_TYPE           = "Content-Type";
     const HEADER_CONTENT_JSON           = "application/json";
     const HEADER_CONTENT_TYPE_INVALID   = "Header Content-Type Invalido";
+    const API_KEY                       = "abc1234";
     const HEADER_TOKEN                  = "Token";
-    const HEADER_API_KEY                = "API-Key";
+    const HEADER_API_KEY                = "Api-Key";
     const HEADER_INVALID_AUTH_HEADERS   = "Necesita un token de acceso valido o usar el ApiKey correcto";
 
     const ERROR                         = "Error:";
@@ -35,6 +36,8 @@ interface ICommons
 
     const HTTP_200                      = 200;
     const HTTP_200_MSG                  = "OK";
+    const HTTP_401                      = 401;
+    const HTTP_401_MSG                  = "Acceso No Autorizado";
     const HTTP_409                      = 409;
     const HTTP_409_MSG                  = "Peticion con Conflicto";
     const HTTP_500                      = 500;
