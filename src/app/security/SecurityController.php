@@ -24,16 +24,21 @@ class SecurityController
             $token = $this->response->CreateToken();
             
             if ($filtrar && $token) {
-                $_SESSION["token"] = $token;
-                $_SESSION["time"] = date("H:i:s",strtotime('+60 minutes'));
-                $filter = array_merge($filtrar[0],array("token" => $token));
-                return $this->response->setResponse($filter);
+                if ($filtrar[0]['usuario'] == $request['usuario'] && $filtrar[0]['contrasena'] == $request['contrasena']) {
+                    $_SESSION["token"] = $token;
+                    $_SESSION["time"] = date("H:i:s",strtotime('+60 minutes'));
+                    $filter = array_merge($filtrar[0],array("token" => $token));
+                    return $this->response->setResponse($filter);
+                }else{
+                    return $this->response->setResponse(array(ICommons::ERROR_401 => ICommons::INVALID_RECORD_NOT_EXIST));
+                }
             }else{
-                return $this->response->setResponse(ICommons::INVALID_RECORD_NOT_EXIST);
+                
+                return $this->response->setResponse(array(ICommons::ERROR_401 => ICommons::INVALID_NOT_CREDENTIALS));
             }
-            
+
         }else{
-            return $this->response->setResponse(ICommons::UNEXPECTED_ERROR);
+            return $this->response->setResponse(array(ICommons::ERROR_500 => ICommons::UNEXPECTED_ERROR));
         }            
     }
 }

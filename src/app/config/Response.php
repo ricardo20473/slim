@@ -27,6 +27,27 @@ class Response
                 $this->mensaje = $data;
                 $responses['mensaje'] = $this;
             }
+
+            if (array_key_exists(ICommons::ERROR_401, $data)) {
+                $responses['status'] = ICommons::HTTP_401;
+                $this->resultado = ICommons::HTTP_401_MSG;
+                $this->mensaje = $data[ICommons::ERROR_401];
+                $responses['mensaje'] = $this;
+            }
+
+            if (array_key_exists(ICommons::ERROR_404, $data)) {
+                $responses['status'] = ICommons::HTTP_404;
+                $this->resultado = ICommons::HTTP_404_MSG;
+                $this->mensaje = $data[ICommons::ERROR_404];
+                $responses['mensaje'] = $this;
+            }
+
+            if (array_key_exists(ICommons::ERROR_500, $data)) {
+                $responses['status'] = ICommons::HTTP_500;
+                $this->resultado = ICommons::HTTP_500_MSG;
+                $this->mensaje = $data[ICommons::ERROR_500];
+                $responses['mensaje'] = $this;
+            }
         }else{
             $responses['status'] = ICommons::HTTP_500;
             $this->resultado = ICommons::HTTP_500_MSG;
