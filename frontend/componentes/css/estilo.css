@@ -1,0 +1,90 @@
+.header{
+    height: 60px;
+    width: 100%;
+    padding: 5px;
+    background-color: #3F73AA;
+}
+
+.menu-izq{
+    background-color: #222;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+    width: 17.6%;
+}
+
+.menu-izq h4{
+    color: #eee;
+}
+
+.lista a{
+    border-radius: 0px !important;
+    background: #222;
+    border: 0px !important;
+    border-top: 1px #333 solid !important;
+    border-bottom: 1px #333 solid !important;
+    padding: 10px 5px 10px 8px !important;
+    color: #ddd;
+}
+
+.lista a:hover{
+    background: #2D69A9 !important;
+    color: #eee;
+}
+
+.lista a:focus{
+    background: #2D69A9 !important;
+    color: #eee;
+}
+
+.lista a span{
+    margin-top: 10px !important;
+    position: absolute;
+    right: 15px;
+}
+
+.lista2{
+    margin-bottom: 0px !important;
+}
+
+.lista2 a{
+    border-radius: 0px !important;
+    background: #333;
+    border: 0px !important;
+    border-top: 1px #222 solid !important;
+    border-bottom: 1px #222 solid !important;
+    padding: 10px 5px 10px 8px !important;
+    color: #ddd;
+}
+
+.lista2 a:hover{
+    background: #2D69A9 !important;
+    color: #eee;
+}
+
+.btn-menu a{
+    color: #ddd;
+    font-size: 30px !important;
+    margin-left: 8px;
+}
+
+.content{
+    border: 1px #999 solid;
+    margin: 30px 5px 0px 15px;
+    border-radius: 5px;
+    border-top: 5px #3F73AA solid;
+}
+
+.content .title{
+    border-bottom: 1px #999 solid;
+}
+
+.content .title h2{
+    font-size: 25px;
+    padding: 0px 15px;
+}
+
+.content .content-text{
+    padding: 15px 20px;
+    text-align: justify;
+}

@@ -1,9 +1,74 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Modulo Admin</title>
-</head>
-<body>
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/png" href="../componentes/img/logo2.png">
+        
+        <title>Modulo Admin</title>
 
-</body>
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../componentes/bootstrap/css/bootstrap-paper.css">
+        <link rel="stylesheet" type="text/css" href="../componentes/css/sweetalert2.css">
+        <link rel="stylesheet" type="text/css" href="../componentes/css/estilo.css">
+
+        <!-- ANGULAR -->
+        <script type="text/javascript" src="../componentes/js/require.js" data-main="js/adminMain.js" ></script>
+
+        <!--[if lt IE 9]>
+            <script src="../common_assets/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container-fluid" ng-controller="adminController" ng-cloak>
+            
+            <div class="row">
+                <div class="col-md-2 hidden-sm hidden-xs ">
+                    <!--Menu slider izquierdo-->
+                    <div class="menu-izq">
+                        <div class="panel-body">
+                            <center>
+                                <h4>Web Live</h4>
+                            </center>
+                        </div>
+                        <div class="list-group lista">
+                            <a href="#" class="list-group-item"><i class="glyphicon glyphicon-user"></i> Usuario</a>
+                            <a href="#" class="list-group-item" data-toggle="collapse" data-target="#demo">Dapibus ac facilisis in <span class="caret"></span></a>
+                            <div class="list-group lista2 collapse" id="demo">
+                                <a href="#" class="list-group-item">ejemplo 1</a>
+                                <a href="#" class="list-group-item">ejemplo 2</a>
+                                <a href="#" class="list-group-item">ejemplo 3</a>
+                            </div>
+                            <a href="#" class="list-group-item">Morbi leo risus</a>
+                            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                            <a href="#" class="list-group-item">Vestibulum at eros</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <!--Cabecera-->
+                    <div class="header">
+                        <div class="btn-menu">
+                            <a href="#"><span class="glyphicon glyphicon-align-justify"></span></a>
+                        </div>
+                    </div>
+
+                    <div ui-view></div>                   
+
+                </div>    
+            </div><!--row-->
+
+
+        </div><!--container-fluid-->
+    </body>
 </html>
