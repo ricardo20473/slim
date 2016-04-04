@@ -6,7 +6,8 @@ var LoginModule = angular.module('LoginModule');
         
         $scope.login = function(data) {
             LoginService.login(data).then(function(response){
-                console.log(response.data.mensaje);
+                login = response.data.mensaje;
+                sessionStorage.token = login.token;
                 swal({
                     title:'Acceso autorizado',
                     text: 'Bienvenido al sistema Web Live',

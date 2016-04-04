@@ -2,6 +2,8 @@ define(function(){
     return [
         '../../componentes/config/config',
         'adminController',
-        'home/homeController'
+        'home/homeController',
+        'usuario/usuarioController',
+        'usuario/usuarioService'
     ];
 });

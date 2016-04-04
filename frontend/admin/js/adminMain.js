@@ -6,6 +6,7 @@ require.config({
         'bootstrap': '../../componentes/bootstrap/js/bootstrap',
         'angular-ui-router': '../../componentes/js/angular-ui-router',
         'bootstrap-ui': '../../componentes/js/ui-bootstrap-tpls-1.1.2.min',
+        'paginator': '../../componentes/js/dirPagination',
         'adminModule': 'adminModule'
     },
     shim: { 
@@ -25,8 +26,12 @@ require.config({
             deps:['angular']
         },
 
+        'paginator':{
+            deps:['angular']
+        },
+
         'adminModule': {
-            deps: ['angular', 'sweetalert','bootstrap','angular-ui-router','bootstrap-ui']
+            deps: ['angular', 'sweetalert','bootstrap','angular-ui-router','bootstrap-ui','paginator']
         }
     }
 });

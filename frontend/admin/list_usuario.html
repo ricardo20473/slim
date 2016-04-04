@@ -1,0 +1,37 @@
+<div class="col-md-12">
+    <div class="content">
+        <div class="title">
+            <h2>Usuarios registrados en Web Live</h2>
+        </div>
+
+        <div class="content-text">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>
+                        NOMBRE
+                    </th>
+                    <th>
+                        APELLIDO
+                    </th>
+                    <th>
+                        USUARIO
+                    </th>
+                    <th>
+                        EMAIL
+                    </th>
+                    <th>
+                        ACCIONES
+                    </th>
+                </tr>
+                <tr dir-paginate="usuarios in usuario | itemsPerPage:numPerPage">
+                    <td>{{usuarios.nombre}}</td>
+                    <td>{{usuarios.apellido}}</td>
+                    <td>{{usuarios.usuario}}</td>
+                    <td>{{usuarios.email}}</td>
+                    <td></td>
+                </tr>
+            </table>
+            <dir-pagination-controls max-size="maxPages" direction-links="true" boundary-links="true" ></dir-pagination-controls>
+        </div>
+    </div>
+</div>
