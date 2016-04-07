@@ -19,7 +19,13 @@ define(function(){
 
         .state('usuarios', {
             url: '/admin/usuarios',
-            templateUrl : 'list_usuario.html',
+            templateUrl : 'usuario/list_usuario.html',
+            controller:'usuarioController'
+        })
+
+        .state('registrar_usuario', {
+            url: '/admin/registrar_usuario',
+            templateUrl : 'usuario/registrar_usuario.html',
             controller:'usuarioController'
         });
     });

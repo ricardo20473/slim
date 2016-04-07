@@ -8,10 +8,10 @@ define(function(){
         $scope.listarUsuario = function(pagina){ 
             usuarioService.getUsuario(sessionStorage.token).then(function(response){
                 
-                $scope.maxPages = 5;
+                $scope.maxPages = PAGINATION.MAX_PAGES;
                 
                 /**Validación de paginación personalizada por módulo**/
-                $scope.numPerPage = 1;
+                $scope.numPerPage = PAGINATION.ITEMS_PER_PAGE;
 
                 $scope.usuario = response.data.mensaje;
             });

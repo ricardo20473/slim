@@ -26,3 +26,9 @@ var HTTP_METHODS = {
     "PUT":"PUT",
     "DELETE":"DELETE"
 };
+
+var PAGINATION = {
+    "DEFAULT_PAGE":1,
+    "ITEMS_PER_PAGE":10,
+    "MAX_PAGES":5
+};

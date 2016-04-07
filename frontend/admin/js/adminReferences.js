@@ -3,7 +3,7 @@ define(function(){
         '../../componentes/config/config',
         'adminController',
         'home/homeController',
-        'usuario/usuarioController',
-        'usuario/usuarioService'
+        '../usuario/usuarioController',
+        '../usuario/usuarioService'
     ];
 });
